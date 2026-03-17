@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlservice
+  template:
+    metadata:
+      labels:
+        app: mlservice
+    spec:
+      containers:
+      - name: mlservice
+        image: {{ .Values.image }}:{{ .Values.version }}
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}

@@ -1,0 +1,9 @@
+services:
+  jupyterhub:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      JUPYTERHUB_ADMIN: ${JUPYTERHUB_ADMIN}
+    volumes:
+      - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
